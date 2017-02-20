@@ -1,8 +1,8 @@
-| |version| |versions| |impls| |wheel| |coverage| |br-coverage|
+| |travisci| |version| |versions| |impls| |wheel| |coverage| |br-coverage|
 
-.. |version| image:: http://img.shields.io/pypi/v/enpassant.svg?style=flat
-    :alt: PyPI Package latest release
-    :target: https://pypi.python.org/pypi/enpassant
+
+.. |travisci| image:: https://api.travis-ci.org/jonathaneunice/enpassant.svg
+    :target: http://travis-ci.org/jonathaneunice/enpassant
 
 .. |versions| image:: https://img.shields.io/pypi/pyversions/enpassant.svg
     :alt: Supported versions

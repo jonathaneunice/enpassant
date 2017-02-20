@@ -13,7 +13,7 @@ def lines(text):
 
 setup(
     name='enpassant',
-    version='0.6.5',
+    version='0.6.6',
     author='Jonathan Eunice',
     author_email='jonathan.eunice@gmail.com',
     description='En passant assignment for clearer conditionals',

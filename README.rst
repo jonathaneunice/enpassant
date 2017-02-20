@@ -1,4 +1,4 @@
-| |travisci| |version| |versions| |impls| |wheel| |coverage| |br-coverage|
+| |travisci| |versions| |impls| |wheel| |coverage| |br-coverage| 
 
 
 .. |travisci| image:: https://api.travis-ci.org/jonathaneunice/enpassant.svg

@@ -1,11 +1,7 @@
-| |version| |downloads| |versions| |impls| |wheel| |coverage| |br-coverage|
+| |version| |versions| |impls| |wheel| |coverage| |br-coverage|
 
 .. |version| image:: http://img.shields.io/pypi/v/enpassant.svg?style=flat
     :alt: PyPI Package latest release
-    :target: https://pypi.python.org/pypi/enpassant
-
-.. |downloads| image:: http://img.shields.io/pypi/dm/enpassant.svg?style=flat
-    :alt: PyPI Package monthly downloads
     :target: https://pypi.python.org/pypi/enpassant
 
 .. |versions| image:: https://img.shields.io/pypi/pyversions/enpassant.svg

@@ -1,5 +1,12 @@
 
 -
+    version: 0.6.4
+    date: February 18, 2017
+    notes: >
+        Extended testing. Now tested on Travis CI.
+
+        
+-
     version: 0.6.3
     date: January 31, 2017
     notes: >

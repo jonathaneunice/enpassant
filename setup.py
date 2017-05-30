@@ -13,7 +13,7 @@ def lines(text):
 
 setup(
     name='enpassant',
-    version='0.6.6',
+    version='0.6.7',
     author='Jonathan Eunice',
     author_email='jonathan.eunice@gmail.com',
     description='En passant assignment for clearer conditionals',
@@ -23,7 +23,7 @@ setup(
     packages=['enpassant'],
     setup_requires=[],
     install_requires=[],
-    tests_require=['tox', 'pytest'],
+    tests_require=['tox', 'pytest', 'coverage', 'pytest-cov'],
     test_suite="test",
     zip_safe=False,     # actually it is, but this apparently avoids setuptools hacks
     keywords='en passant',
@@ -37,7 +37,6 @@ setup(
         Programming Language :: Python :: 2.6
         Programming Language :: Python :: 2.7
         Programming Language :: Python :: 3
-        Programming Language :: Python :: 3.2
         Programming Language :: Python :: 3.3
         Programming Language :: Python :: 3.4
         Programming Language :: Python :: 3.5

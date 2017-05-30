@@ -1,4 +1,4 @@
-| |travisci| |versions| |impls| |wheel| |coverage| |br-coverage| 
+| |travisci| |versions| |impls| |wheel| |coverage| |br-coverage|
 
 
 .. |travisci| image:: https://api.travis-ci.org/jonathaneunice/enpassant.svg
@@ -20,7 +20,7 @@
     :alt: Test line coverage
     :target: https://pypi.python.org/pypi/enpassant
 
-.. |br-coverage| image:: https://img.shields.io/badge/test_coverage-99%25-blue.svg
+.. |br-coverage| image:: https://img.shields.io/badge/branch_coverage-99%25-blue.svg
     :alt: Test branch coverage
     :target: https://pypi.python.org/pypi/enpassant
 
@@ -31,11 +31,15 @@ Usage
 
 ::
 
+    from __future__ import print_function # Python 2/3 compat
     from enpassant import *
     result = Passer()
 
     while result / expensive_request():
-        print result.report()
+        print(result.report())
+
+        # assuming report() is a method of the object
+        # expensive_request() would naturally hand back
 
 Discussion
 ==========
@@ -43,36 +47,35 @@ Discussion
 Many languages support *en passant* (in passing) assignment, like so::
 
     if result = expensive_request():
-        print result.report()
+        print(result.report())
 
-Python does not. This leads to more code lines and, in some cases, less
+In Python, that's a syntax error.
+This leads to more code lines and, in some cases, less
 visual clarity::
 
     result = expensive_request()
     if result:
-        print result.report()
+        print(result.report())
 
 Or worse, in the case of looping structures::
 
     result = expensive_request()
     while result:
-        print result.report()
+        print(result.report())
         result = expensive_request()
 
 It doesn't look so bad here, in a highly distilled example. But in real
 programs, the called function often has parameters to be managed, and the
-surrounding code is invariably longer and more complicated.
-The more
-complicated the surrounding computations and requests, the simpler the
-comparison itself should be. As the `Zen of Python
-<http://www.python.org/dev/peps/pep-0020/>`_ intones: "Simple is better than
-complex." and "Readability counts."
+surrounding code is invariably longer and more complicated. The more complicated
+the surrounding computations and requests, the simpler the comparison itself
+should be. As the `Zen of Python <http://www.python.org/dev/peps/pep-0020/>`_
+intones: "Simple is better than complex." and "Readability counts."
 
-I hope that Python
-will eventually provide a concise way of handling this, such as::
+I hope that Python will eventually provide a concise way of handling this, such
+as::
 
     while expensive_request() as result:
-        print result.report()
+        print(result.report())
 
 But in the meanwhile, ``enpassant`` provides a workaround.
 
@@ -85,7 +88,7 @@ How it Works
     result = Passer()
 
     while result / expensive_request():
-        print result.report()
+        print(result.report())
 
 Here ``result / expensive_request()`` is read "the result of the
 expensive_request." ``result`` is merely a proxy object that, when it
@@ -112,8 +115,8 @@ that of the value they contain, should you wish to use them in subsequent
 tests.
 
 The ``result`` in the example above isn't the pure result of the following
-function call (or expression), but rather a proxy to it. While item (``[]``)
-and attribute (``.``) access work directly on ``result``, this is because
+function call (or expression), but rather a proxy to it. Item (``[]``)
+and attribute (``.``) access work directly on ``result`` because
 ``Passer`` objects pass on *getitem* and *get-attribute* requests to their
 enclosed value. Usually, this is a convenience, and avoids having to
 needlessly state that it's really ``result.value`` that's being indexed or
@@ -126,7 +129,7 @@ Alternative Value Access
 It is also possible to retrieve the value of a ``Passer`` by calling it::
 
     if result / expensive_request():
-        print result().report()
+        print(result().report())
 
 This technique makes clear that the value is being rendered via some
 process, rather than just presented as a normal Python name / variable. And
@@ -139,7 +142,7 @@ Or, if you prefer something terser, the ``+`` (unary positive) operation
 will also yield the value::
 
     if result / expensive_request():
-        print +result.report()
+        print(+result.report())
 
 Alternative Invocations
 =======================
@@ -152,22 +155,20 @@ are supported as aliases of the division operation (``/``). Thus, the
 following are identical::
 
     if result / expensive_request():
-        print result.report()
+        print(result.report())
 
     if result < expensive_request():
-        print result.report()
+        print(result.report())
 
     if result <= expensive_request():
-        print result.report()
+        print(result.report())
 
 It's a matter of preference which seems most logical, appropriate, and
-expressive.
-None of them are as good
-Note, however, that the operation usually known as division
-(``/``) has a much higher precedence (i.e. tighter binding to its operands)
-than the typical comparison operations (``<`` and ``<=``). If used with a
-more complex expressions, either know your precedence or use parenthesis to
-disambiguate!
+expressive. None of them are as good Note, however, that the operation usually
+known as division (``/``) has a much higher precedence (i.e. tighter binding to
+its operands) than the typical comparison operations (``<`` and ``<=``). If used
+with a more complex expressions, either know your precedence or use parenthesis
+to disambiguate!
 
 It'd be swell if Python supported arbitrary symbols. Unicode has what would
 be reasonable alternative assignment markers, such as |larrow| (`LEFTARDS
@@ -178,7 +179,7 @@ ASCII operator to repurpose.
 It is also possible to use a function call idiom if you prefer::
 
     if result(expensive_request()):
-        print result.report()
+        print(result.report())
 
 This has the virtue of looking like a "wrapping" of the expensive
 request value, rather than reusing / overloading an existing operation.
@@ -186,7 +187,7 @@ request value, rather than reusing / overloading an existing operation.
 Grabber and Similar
 ===================
 
-I've begun experimenting with other forms of collecting and rendering values.
+I've experimented with other forms of collecting and rendering values.
 This version of ``enpassant`` includes the results of one of those experiments.
 Objects of the ``Grabber`` class can have their attributes set on their first
 access. Subsequent uses of that attribute yield the set value.::
@@ -244,11 +245,8 @@ To install or upgrade to the latest version::
 
     pip install -U enpassant
 
-To ``easy_install`` under a specific Python version (3.3 in this example)::
-
-    python3.3 -m easy_install --upgrade enpassant
-
-(You may need to prefix these with ``sudo`` to authorize
+You may need to prefix these with ``sudo`` to authorize
 installation. In environments without super-user privileges, you may want to
 use ``pip``'s ``--user`` option, to install only for a single user, rather
-than system-wide.)
+than system-wide. You may also need version-specific versions of ``pip``,
+such as ``pip2`` and ``pip3``, depending on your system configuration.

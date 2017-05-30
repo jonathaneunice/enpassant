@@ -3,12 +3,12 @@ Define en passant helper objects.
 """
 
 import sys
-_PY3 = sys.version_info[0] > 2
+_PY2 = sys.version_info[0] == 2
 
 try:
     from collections import OrderedDict
 except ImportError:
-    # Should only be an issue for Python <= 2.6
+    # Python 2.6
     from .ordereddict import OrderedDict
 
 __all__ = 'Passer Grabber'.split()
@@ -43,12 +43,12 @@ class Passer(object):
         """
         return bool(self.value)
 
-    if _PY3:
-        __truediv__ = _grab
-        __bool__ = _bool
-    else:
+    if _PY2:
         __div__ = _grab
         __nonzero__ = _bool
+    else: # PY3 and ff
+        __truediv__ = _grab
+        __bool__ = _bool
 
     # define alterate operators (< and <=)
     __lt__ = _grab
